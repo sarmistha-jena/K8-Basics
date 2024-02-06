@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    class: basics   #Help in label-selector - deployments,services or simply to filer with "-l key=value"
+    env: minikube
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.14.2
+      env:
+        - name: DEMO_MSG  # Set environment variable for the container, k exec podName -c containerName -- env
+          value: "You did it!!"
+        - name: DEMO_PARA
+          value: "Go Girl!!"
+      ports:
+        - containerPort: 80 #Exposes this container port
+    - name: hello
+      image: busybox:1.28
+      command: [ 'sh', '-c', 'echo "Hello, Kubernetes!" && sleep 3600' ]
+  restartPolicy: OnFailure
+  nodeSelector:
+    mynode: demonode  #The pod will be created in this Node only

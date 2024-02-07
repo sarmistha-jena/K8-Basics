@@ -19,12 +19,12 @@ spec:
     spec:
       containers:
         - name: cont1
-          image: registry.k8s.io/test-webserver
+          image: centos
           volumeMounts:
             - mountPath: /tmp/data
               name: emptydirvol
         - name: cont2
-          image: nginx
+          image: ubuntu
           volumeMounts:
             - mountPath: /tmp/cache
               name: emptydirvol

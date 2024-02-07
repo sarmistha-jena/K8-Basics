@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: emptyDir1
-  name: emptyDirExample
+  name: emptydirectory
 spec:
   replicas: 1
   selector:
@@ -18,16 +18,16 @@ spec:
         app: emptyDir1
     spec:
       containers:
-        - name: C01
+        - name: cont1
           image: registry.k8s.io/test-webserver
           volumeMounts:
             - mountPath: /tmp/data
-              name: empty-dir
-        - name: C02
+              name: emptydirvol
+        - name: cont2
           image: registry.k8s.io/test-webserver
           volumeMounts:
             - mountPath: /tmp/cache
-              name: emptyDirExample
+              name: emptydirvol
       volumes:
-        - name: emptyDirExample
+        - name: emptydirvol
           emptyDir: {}

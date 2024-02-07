@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: hostPath1
-  name: hostPath1
+  name: hostpath1
 spec:
   replicas: 1
   selector:
@@ -18,8 +18,9 @@ spec:
         app: hostPath1
     spec:
       containers:
-        - name: hostPath1
-          image: registry.k8s.io/test-webserver
+        - name: hostpath1
+          image: ubuntu
+          command: [ "/bin/bash", "-c", "sleep 10000" ]
           volumeMounts:
             - mountPath: /var/local/aaa
               name: mydir

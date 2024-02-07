@@ -24,7 +24,7 @@ spec:
             - mountPath: /tmp/data
               name: emptydirvol
         - name: cont2
-          image: busybox:1.28
+          image: nginx
           volumeMounts:
             - mountPath: /tmp/cache
               name: emptydirvol

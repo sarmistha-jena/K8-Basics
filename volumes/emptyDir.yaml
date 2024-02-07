@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: emptyDir1
+  name: emptyDir1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emptyDir1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: emptyDir1
+    spec:
+      containers:
+        - name: emptyDir1
+          image: registry.k8s.io/test-webserver
+          volumeMounts:
+            - mountPath: /tmp/data
+              name: empty-dir
+        - name: emptyDir2
+          image: registry.k8s.io/test-webserver
+          volumeMounts:
+            - mountPath: /tmp/cache
+              name: empty-dir
+      volumes:
+        - name: empty-dir
+          emptyDir: {}

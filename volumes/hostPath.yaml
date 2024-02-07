@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hostPath1
+  name: hostPath1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostPath1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hostPath1
+    spec:
+      containers:
+        - name: hostPath1
+          image: registry.k8s.io/test-webserver
+          volumeMounts:
+            - mountPath: /var/local/aaa
+              name: mydir
+            - mountPath: /var/local/aaa/1.txt
+              name: myfile
+      volumes:
+        - name: mydir
+          hostPath:
+                  # Ensure the file directory is created.
+            path: /var/local/aaa
+            type: DirectoryOrCreate
+        - name: myfile
+          hostPath:
+            path: /var/local/aaa/1.txt
+            type: FileOrCreate

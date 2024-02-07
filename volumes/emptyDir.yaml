@@ -20,11 +20,13 @@ spec:
       containers:
         - name: cont1
           image: centos
+          command: ["/bin/bash", "-c", "sleep 10000"]
           volumeMounts:
             - mountPath: /tmp/data
               name: emptydirvol
         - name: cont2
           image: ubuntu
+          command: ["/bin/bash", "-c", "sleep 10000"]
           volumeMounts:
             - mountPath: /tmp/cache
               name: emptydirvol

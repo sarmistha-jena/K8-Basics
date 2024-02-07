@@ -24,7 +24,7 @@ spec:
             - mountPath: /tmp/data
               name: emptydirvol
         - name: cont2
-          image: registry.k8s.io/test-webserver
+          image: busybox:1.28
           volumeMounts:
             - mountPath: /tmp/cache
               name: emptydirvol

@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mydeploy
+spec:
+  replicas: 1
+  selector:      # tells the controller which pods to watch/belong to
+    matchLabels:
+      name: deployment
+  template:
+    metadata:
+      name: testpod8
+      labels:
+        name: deployment
+    spec:
+      containers:
+        - name: c00
+          image: httpd
+          ports:
+            - containerPort: 80
+          livenessProbe:                  # define the health check
+            exec:
+              command:                    # command to run periodically
+                - ls
+                - /tmp/lp
+            initialDelaySeconds: 30 # Wait for the specified time before it runs the first
+            periodSeconds: 5        # Run the above command every 5 sec
+            timeoutSeconds: 30

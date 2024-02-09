@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mydeploy
+spec:
+  replicas: 2
+  selector:      # matches the labels in template.metadata.labels
+    matchLabels:
+      name: deployment
+  template:      # pod template
+    metadata:
+      name: testpod
+      labels:
+        name: deployment
+    spec:
+      containers:
+        - name: c01
+          image: ubuntu  # ubuntu:22.10
+          command: ["/bin/bash", "-c", "while true; do echo Hello World; sleep 5; done"]
